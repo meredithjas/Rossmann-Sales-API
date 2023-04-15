@@ -1,8 +1,10 @@
-name: Deploy to heroku.
+name: Deploy to Heroku
 
 on:
   push:
     branches: [master]
+
+needs: lint_all_branches
 
 jobs:
   build:
