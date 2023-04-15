@@ -4,8 +4,6 @@ on:
   push:
     branches: [master]
 
-needs: lint_all_branches
-
 jobs:
   build:
     runs-on: ubuntu-latest
