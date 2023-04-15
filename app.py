@@ -1,4 +1,5 @@
 import datetime
+import os
 import pickle
 import joblib
 import pandas as pd
@@ -8,7 +9,7 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-# Load the model from the joblib file
+# Load the model from the pickle file
 model = joblib.load("./models/dt_model.pkl")
 
 def preprocess_input(data):
@@ -53,4 +54,5 @@ def predict():
     return jsonify({"sales": response[0]})
 
 if __name__ == '__main__':
-    app.run(port=5000, debug=True)
+    port = os.environ.get("PORT", 5000)
+    app.run(debug=False, host="0.0.0.0", port=port)
