@@ -1,0 +1,32 @@
+name: Lint
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    branches:
+      - "**"
+
+permissions:
+  contents: read
+
+jobs:
+  # Run Python lint
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Setup Pre-commit hooks
+        run: |
+          pip install pre-commit
+          pre-commit install
+      - name: Check files
+        run: |
+          pre-commit run --all-files
