@@ -54,9 +54,13 @@ def predict():
     input_dataframe = pd.DataFrame([input_preprocessed])
 
     # Make the prediction using the loaded model
-    prediction = model.predict(input_dataframe)
-    response = prediction.tolist()
-    return jsonify({"sales": response[0]})
+    try:
+        prediction = model.predict(input_dataframe)
+        response = prediction.tolist()
+        return jsonify({"sales!": response[0]})
+
+    except Exception as err:
+        raise Exception("ERROR:", err)
 
 
 if __name__ == "__main__":

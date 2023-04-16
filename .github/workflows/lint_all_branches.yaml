@@ -2,8 +2,8 @@ name: Lint
 
 on:
   push:
-    branches:
-      - "**"
+    branches-ignore:
+        - master
   pull_request:
     branches:
       - "**"
