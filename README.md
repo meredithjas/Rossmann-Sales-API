@@ -51,11 +51,19 @@ There were 243 and 12 tests generated, respectively.
 
 ## Final Model
 
-The model with hyperparameters:
+The model with the following hyperparameters yielded the best score of **`89.48` (R^2)**:
 
-**{'max_depth': 10, 'max_features': 8, 'min_samples_leaf': 2, 'min_samples_split': 4, 'n_estimators': 50}**
+- '**max_depth**': 10
+- '**max_features**': 8
+- '**min_samples_leaf**': 2
+- '**min_samples_split**': 4
+- '**n_estimators**': 50
 
-yielded the best score of **`89.48`**
+**Model Metrics:**
+
+- **Mean Squared Error**: 1554189.193997423
+- **Mean Absolute Error**: 836.4053360465724
+- **R^2**: 0.894732420470625
 
 ---
 
@@ -94,15 +102,11 @@ The API accepts eight parameters: **Store**, **DayOfWeek**, **Date**, **Customer
 | StateHoliday | str | “a” | string = “a” “b” “c” “0”; int = 0 |
 | SchoolHoliday | int | 1 |  |
 
-<aside>
-💡 The API only accepts **Open** with value of **1** since closed stores from refurbishment will have no sales.
+> 💡 The API only accepts **Open** with value of **1** since closed stores from refurbishment will have no sales. 💡
+>
 
-</aside>
-
-<aside>
-💡 The API only accepts StateHoliday values of string “a”, “b”, “c”,”0” and int 0
-
-</aside>
+> 💡 The API only accepts StateHoliday values of string “a”, “b”, “c”,”0” and int 0. 💡
+>
 
 ### Sample Request and Response 1:
 
@@ -198,7 +202,7 @@ The CI/CD Model Deployment pipeline is made from Github Actions Workflow yaml fi
 
 ## Containerization using Dockerfile and Heroku
 
-The `Dockerfile` specifies the necessary dependencies and commands for running the application. This is used to build the application container that will be deployed to Heroku. A `heroku.yaml` and `Procfile` is also needed for the deployment.
+The `[Dockerfile](https://github.com/meredithjas/Rossmann-Sales-API/blob/master/Dockerfile)` specifies the necessary dependencies and commands for running the application. This is used to build the application container that will be deployed to Heroku. A `[heroku.yaml](https://github.com/meredithjas/Rossmann-Sales-API/blob/master/heroku.yaml)` and `[Procfile](https://github.com/meredithjas/Rossmann-Sales-API/blob/master/Procfile)` is also needed for the deployment.
 
 See code for more details
 
@@ -216,16 +220,16 @@ There are two workflows in the project: `Lint` and `Deploy to Heroku`
 
 Runs the pre-commit hook to check for linting issues.
 
-See code for more details
+[See code for more details](https://github.com/meredithjas/Rossmann-Sales-API/blob/master/.github/workflows/lint_all_branches.yaml)
 
 ### Deployment to Heroku
 
 Deploys the docker container to heroku. Makes use of [gonuit/heroku-docker-deploy@v1.3.3](https://github.com/marketplace/actions/build-push-and-release-a-docker-container-to-heroku?version=v1.3.3) from Github Marketplace.
 
-See code for more details
+[See code for more details](https://github.com/meredithjas/Rossmann-Sales-API/blob/d71b40febc981f0ce711885defd3b13d4f81d055/.github/workflows/deploy_and_test.yaml#L26-L48)
 
 ### Test API
 
-After deployment, this runs the test script from `test` folder to ensure that the deployed model to heroku is working as expected.
+After deployment, this runs the [test script](https://github.com/meredithjas/Rossmann-Sales-API/blob/master/test/test_api.py) from `test` folder to ensure that the deployed model to heroku is working as expected.
 
-See code for more details
+[See code for more details](https://github.com/meredithjas/Rossmann-Sales-API/blob/d71b40febc981f0ce711885defd3b13d4f81d055/.github/workflows/deploy_and_test.yaml#L50-L71)
