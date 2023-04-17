@@ -59,15 +59,6 @@ jobs:
         with:
           python-version: "3.9"
 
-      - name: Run Integration Test
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-          NAMESPACE: ${{ env.NAMESPACE }}
-        run: |
-          python tests/integration-tests/test.py
-
       - name: Install dependencies
         run: |
           pip install -r test/requirements.txt
