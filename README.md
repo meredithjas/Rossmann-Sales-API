@@ -202,7 +202,7 @@ The CI/CD Model Deployment pipeline is made from Github Actions Workflow yaml fi
 
 ## Containerization using Dockerfile and Heroku
 
-The `[Dockerfile](https://github.com/meredithjas/Rossmann-Sales-API/blob/master/Dockerfile)` specifies the necessary dependencies and commands for running the application. This is used to build the application container that will be deployed to Heroku. A `[heroku.yaml](https://github.com/meredithjas/Rossmann-Sales-API/blob/master/heroku.yaml)` and `[Procfile](https://github.com/meredithjas/Rossmann-Sales-API/blob/master/Procfile)` is also needed for the deployment.
+The [**Dockerfile](https://github.com/meredithjas/Rossmann-Sales-API/blob/master/Dockerfile)** specifies the necessary dependencies and commands for running the application. This is used to build the application container that will be deployed to Heroku. A **[heroku.yaml](https://github.com/meredithjas/Rossmann-Sales-API/blob/master/heroku.yaml)** and [**Procfile**](https://github.com/meredithjas/Rossmann-Sales-API/blob/master/Procfile) is also needed for the deployment.
 
 See code for more details
 
