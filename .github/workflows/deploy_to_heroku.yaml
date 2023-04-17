@@ -50,6 +50,7 @@ jobs:
   test:
     needs: build
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
 
@@ -58,15 +59,22 @@ jobs:
         with:
           python-version: "3.8.2"
 
-      - name: Set API_LINK environment variable
+      - name: Run Integration Test
         env:
-          API_LINK: ${{ secrets.API_LINK }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          NAMESPACE: ${{ env.NAMESPACE }}
+        run: |
+          python tests/integration-tests/test.py
 
       - name: Install dependencies
         run: |
           pip install -r test/requirements.txt
 
       - name: Unit test model
+        env:
+          HEROKU_API_LINK: ${{ secrets.HEROKU_API_LINK }}
         run: |
           cd test
           python test_api.py
