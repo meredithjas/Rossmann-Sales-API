@@ -46,3 +46,35 @@ jobs:
           docker_options: "--no-cache"
 
           process_type: web
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.8.2"
+
+      - name: Run Integration Test
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          NAMESPACE: ${{ env.NAMESPACE }}
+        run: |
+          python tests/integration-tests/test.py
+
+      - name: Install dependencies
+        run: |
+          pip install -r test/requirements.txt
+
+      - name: Unit test model
+        env:
+          HEROKU_API_LINK: ${{ secrets.HEROKU_API_LINK }}
+        run: |
+          cd test
+          python test_api.py
