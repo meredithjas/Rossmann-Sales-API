@@ -47,7 +47,7 @@ jobs:
 
           process_type: web
 
-  test:
+  integration test:
     needs: build
     runs-on: ubuntu-latest
 
@@ -63,9 +63,9 @@ jobs:
         run: |
           pip install -r test/requirements.txt
 
-      - name: Unit test model
+      - name: Test heroku API
         env:
           HEROKU_API_LINK: ${{ secrets.HEROKU_API_LINK }}
         run: |
           cd test
-          python test_api.py
+          python integration_test.py
