@@ -113,4 +113,3 @@ jobs:
         run: |
           cd test
           locust -f load_test.py --config configuration.conf --csv=results
-          cat results/*.csv
