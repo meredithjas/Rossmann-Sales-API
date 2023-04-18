@@ -17,4 +17,4 @@ class Testing(HttpUser):
             "SchoolHoliday": 1,
         }
 
-        self.client.post("/predict", json=input_data)
+        self.client.post("", json=input_data)
