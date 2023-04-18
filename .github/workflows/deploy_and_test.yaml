@@ -23,8 +23,27 @@ jobs:
         run: |
           pre-commit run --all-files
 
-  build:
+  unit-test:
     needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Unit test model
+        run: |
+          python3 -m unittest unit_test.py
+
+  build:
+    needs: unit-test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -47,7 +66,7 @@ jobs:
 
           process_type: web
 
-  integration test:
+  integration-test:
     needs: build
     runs-on: ubuntu-latest
 

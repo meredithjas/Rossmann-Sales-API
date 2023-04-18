@@ -32,7 +32,6 @@ if __name__ == "__main__":
 
     url = heroku_api_link
 
-    # REQUIRED: Please check input data if correct
     data = {
         "Store": 1111,
         "DayOfWeek": 4,
