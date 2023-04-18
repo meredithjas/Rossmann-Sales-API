@@ -104,7 +104,7 @@ jobs:
       - name: Add Heroku link to config file
         run: |
           cd test
-          sed -i "s/{HOST}/${{ secrets.HEROKU_API_LINK }}/g" configuration.conf
+          sed -i "s|{HOST}|${{ secrets.HEROKU_API_LINK }}|g" configuration.conf
 
       - name: Install Locust
         run: pip install locust
