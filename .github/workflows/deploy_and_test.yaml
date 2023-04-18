@@ -88,3 +88,28 @@ jobs:
         run: |
           cd test
           python integration_test.py
+
+  load-test:
+    needs: integration-test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Add Heroku link to config file
+        run: |
+          cd test
+          sed -i "s/{HOST}/${{ secrets.HEROKU_API_LINK }}/g" configuration.conf
+
+      - name: Install Locust
+        run: pip install locust
+
+      - name: Run Locust load test script
+        run: |
+          locust -f load_test.py --config configuration.conf --csv=results
+          cat results/*.csv
