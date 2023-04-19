@@ -110,7 +110,7 @@ The API accepts eight parameters: **Store**, **DayOfWeek**, **Date**, **Customer
 > 💡 The API only accepts **StateHoliday** values of string “a”, “b”, “c”,”0” and int 0. 💡
 >
 
-### Sample Request and Response 1:
+### Sample Request and Response 1 (200):
 
 Here is a sample input and output request in JSON format:
 
@@ -130,7 +130,7 @@ Here is a sample input and output request in JSON format:
 
 will output:
 
-```python
+```json
 {
     "sales": 25565.772841401882
 }
@@ -138,7 +138,7 @@ will output:
 
 ### Sample Request and Response 2 (closed store):
 
-```python
+```json
 {
     "Store":1111,
     "DayOfWeek":4,
@@ -151,7 +151,7 @@ will output:
 }
 ```
 
-```python
+```json
 {
     "error": "ERROR: Store should be open.",
     "status": 400
@@ -160,7 +160,7 @@ will output:
 
 ### Sample Request and Response 3 (invalid StateHoliday):
 
-```python
+```json
 {
     "Store":1111,
     "DayOfWeek":4,
@@ -173,7 +173,7 @@ will output:
 }
 ```
 
-```python
+```json
 {
     "error": "ERROR: State Holiday unknown.",
     "status": 400
@@ -184,7 +184,7 @@ will output:
 
 Before running the API, create a virtual environment and install the dependencies in the **requirements.txt** file in the root folder.
 
-```python
+```bash
 $ virtualenv API
 $ source API/bin/activate
 (API)$ pip3 install -r path/to/requirements.txt
@@ -192,7 +192,7 @@ $ source API/bin/activate
 
 Run the python file **app.py** in the root folder using the virtual environment:
 
-```python
+```bash
 (API)$ python3 app.py
 ```
 
@@ -202,7 +202,7 @@ Run the python file **app.py** in the root folder using the virtual environment:
 
 ![ci:cd pipeline.png](%F0%9F%9A%80%20Rossmann%20Sales%20ML%20Model%20Building%20and%20Deployment%209dc2377669ea4afb9903207b7c99a68a/cicd_pipeline.png)
 
-The CI/CD Model Deployment pipeline is made from Github Actions Workflow yaml files. It contains the **Linter**, **Unit Testing**, **Deployment to Heroku**, **Integration Testing.**
+The CI/CD Model Deployment pipeline is made from Github Actions Workflow yaml files. It contains the **Linter**, **Unit Testing**, **Deployment to Heroku**, **Integrated Testing,**  and **Load Testing.**
 
 ## Containerization using Dockerfile and Heroku
 
@@ -254,7 +254,7 @@ Runs the [load testing script](https://github.com/meredithjas/Rossmann-Sales-API
 - spawn-rate = 20
 - run-time = 3m
 
-This will output response time, request rate, user count, error rate, exceptions.
+This will output response time, request rate, user count, error rate, exceptions after the run-time (3 minutes).
 
 ![load test result.png](%F0%9F%9A%80%20Rossmann%20Sales%20ML%20Model%20Building%20and%20Deployment%209dc2377669ea4afb9903207b7c99a68a/load_test_result.png)
 
