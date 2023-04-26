@@ -12,7 +12,7 @@ class TestApp(unittest.TestCase):
     def test_health(self):
         response = self.app.get("/health")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.data, b"Welcome to Rossmann Sales API!")
+        self.assertEqual(response.data, b"Welcome to Rossmann Sales API!!")
 
     def test_predict(self):
         input_data = {
