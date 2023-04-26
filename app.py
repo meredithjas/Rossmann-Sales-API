@@ -46,7 +46,7 @@ def preprocess_input(input_data):
 # Health Check endpoint
 @app.route("/health", methods=["GET"])
 def health():
-    return "Welcome to Rossmann Sales API!"
+    return "Welcome to Rossmann Sales API!!"
 
 
 # Predict endpoint
